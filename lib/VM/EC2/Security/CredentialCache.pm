@@ -1,5 +1,5 @@
 package VM::EC2::Security::CredentialCache;
-
+$VM::EC2::Security::CredentialCache::VERSION = '0.12';
 use strict;
 use warnings;
 use DateTime::Format::ISO8601;
