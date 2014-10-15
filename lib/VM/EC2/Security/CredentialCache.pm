@@ -1,5 +1,5 @@
 package VM::EC2::Security::CredentialCache;
-$VM::EC2::Security::CredentialCache::VERSION = '0.001';
+
 use strict;
 use warnings;
 use DateTime::Format::ISO8601;
@@ -20,7 +20,7 @@ Retrieves the current EC2 instance's IAM credentials and caches them until they 
 
 =head1 DESCRIPTION
 
-This module provides a cache for an EC2's IAM credentials represented by L<VM::EC2::SecurityCredentials>. 
+This module provides a cache for an EC2's IAM credentials represented by L<VM::EC2::Security::Credentials>. 
 Rather than retriving the credentials for every possible call that uses them, cache them until they
 expire and retreive them again if they have expired.
 

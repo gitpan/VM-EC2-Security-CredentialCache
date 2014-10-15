@@ -21,5 +21,6 @@ requires:
   warnings: '0'
 resources:
   bugtracker: https://github.com/rustyconover/vm-ec2-security-credentialcache/issues
+  homepage: http://search.cpan.org/dist/VM-EC2-Security-CredentialCache/
   repository: git://github.com/rustyconover/vm-ec2-security-credentialcache.git
-version: '0.001'
+version: '0.002'

@@ -3,8 +3,14 @@ Changes from 2013-10-15 00:00:00 +0000 to present.
 ==================================================
 
 ------------------------------------------
-version 0.001 at 2014-10-15 00:10:41 +0000
+version 0.001 at 2014-10-15 13:32:35 +0000
 ------------------------------------------
+
+  Change: f6fc40597a076dcd19210b9dce77da8404f715b6
+  Author: Rusty Conover <rusty@luckydinosaur.com>
+  Date : 2014-10-15 09:32:35 +0000
+
+    Fix bug with versioning 
 
   Change: 583faab15ed97f8710bfad5bbc44891a7c4f4b9e
   Author: Rusty Conover <rusty@luckydinosaur.com>
