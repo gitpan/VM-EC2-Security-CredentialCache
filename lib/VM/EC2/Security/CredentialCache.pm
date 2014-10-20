@@ -1,5 +1,5 @@
 package VM::EC2::Security::CredentialCache;
-$VM::EC2::Security::CredentialCache::VERSION = '0.16';
+$VM::EC2::Security::CredentialCache::VERSION = '0.18';
 use strict;
 use warnings;
 use DateTime::Format::ISO8601;
@@ -30,22 +30,27 @@ my $credentials;
 my $credential_expiration_dt;
 
 sub get {
-  RETRY:
     if (!defined($credentials)) {
         my $meta = VM::EC2::Instance::Metadata->new;
         defined($meta) || die("Unable to retrieve instance metadata");
         $credentials= $meta->iam_credentials;
         defined($credentials) || die("No IAM credentials retrieved from instance metadata");
         $credential_expiration_dt = DateTime::Format::ISO8601->parse_datetime($credentials->expiration());
+
+        return $credentials;
     }
 
-    if ($credential_expiration_dt->subtract_datetime_absolute(DateTime->now())->is_positive()) {
+    # AWS provides new credentials atleast 5 minutes before the expiration of the old 
+    # credentials, but we'll only start looking at 4 minutes
+    if ($credential_expiration_dt->subtract_datetime_absolute(DateTime->now())->in_units('minutes') > 4) {
         return $credentials;
-    } else {
-        $credentials = undef;
-        $credential_expiration_dt = undef;
-        goto RETRY;
-    }
+    } 
+        
+    # These credentials are good for only 4 minutes or less, so clear them and attempt to 
+    # retrieve new credentials.
+    $credentials = undef;
+    $credential_expiration_dt = undef;
+    return get();
 }
 
 1;

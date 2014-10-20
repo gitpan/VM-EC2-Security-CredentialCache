@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution VM-EC2-Security-CredentialCache,
-version 0.16:
+version 0.18:
 
   Cache credentials respecting expriation time for IAM roles.
 
