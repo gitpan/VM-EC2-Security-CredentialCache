@@ -1,5 +1,5 @@
 package VM::EC2::Security::CredentialCache;
-$VM::EC2::Security::CredentialCache::VERSION = '0.20';
+$VM::EC2::Security::CredentialCache::VERSION = '0.21';
 use strict;
 use warnings;
 use DateTime::Format::ISO8601;
@@ -30,7 +30,7 @@ my $credentials;
 my $credential_expiration_dt;
 
 sub get {
-    my $now = shift;
+    my ($self, $now) = @_;
     if (!defined($credentials)) {
         my $meta = VM::EC2::Instance::Metadata->new;
         defined($meta) || die("Unable to retrieve instance metadata");
